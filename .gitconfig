@@ -1,0 +1,23 @@
+[user]
+	name = Yingqian Mei
+	mail = yingqian.mei@scalablepress.com
+	email = yingqian.mei@scalablepress.com
+	asana-token = 0/61abd4564418e25ac3fd5e66459305ee
+	freshdesk-key = mi3CqnBaMUhUm6LGnyI
+[core]
+	excludesfile = /Users/yingqian/.gitignore_global
+	editor = /usr/bin/vim
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/yingqian/.stCommitMsg
+[credential]
+	helper = osxkeychain
+[init]
+	templatedir = ~/.git-templates
+[push]
+	default = current
