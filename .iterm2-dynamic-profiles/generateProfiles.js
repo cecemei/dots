@@ -17,13 +17,26 @@ const warProfiles = warRepos.map( (repo) => {
 });
 
 const repos = fs.readdirSync('/Users/yingqian/workspace').filter( (dirName) => {
-  return dirName.startsWith('oo') || dirName.startsWith('sp') || dirName.startsWith('sl');
-}).concat([
+  return dirName.startsWith('oo') || dirName.startsWith('sp') || dirName.startsWith('sl') || dirName.startsWith('pls') || dirName.startsWith('infra');
+});
+
+const infra = [
   'mongod',
   'elasticsearch',
   'rabbitmq',
-  'etc'
-]);
+  'etc',
+  'dots',
+  'dev'
+];
+
+const infraProfiles = infra.map( (entry) => {
+  return Object.assign({}, template, {
+    "Name": entry,
+    "Guid": entry,
+    "Initial Text": template["Initial Text"].replace(/main/gi, entry),
+    "Working Directory": template["Working Directory"],
+  });
+});
 
 const profiles = repos.map( (repo) => {
   return Object.assign({}, template, {
@@ -32,7 +45,7 @@ const profiles = repos.map( (repo) => {
     "Initial Text": template["Initial Text"].replace(/main/gi, repo),
     "Working Directory": template["Working Directory"] + repo,
   });
-}).concat(warProfiles);
+}).concat(infraProfiles);
 
 const dynamicProfileDir = '/Users/yingqian/Library/Application Support/iTerm2/DynamicProfiles/';
 fs.writeFileSync(dynamicProfileDir + 'profiles.json', JSON.stringify({ Profiles: profiles }, null, 2), { encoding: 'utf8' });
