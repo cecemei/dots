@@ -1,23 +1,26 @@
 [user]
-	name = Yingqian Mei
-	mail = yingqian.mei@scalablepress.com
-	email = yingqian.mei@scalablepress.com
-	asana-token = 0/61abd4564418e25ac3fd5e66459305ee
-	freshdesk-key = mi3CqnBaMUhUm6LGnyI
-[core]
-	excludesfile = /Users/yingqian/.gitignore_global
-	editor = /usr/bin/vim
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[commit]
-	template = /Users/yingqian/.stCommitMsg
+	name = cecemei
+	email = yingqian.mei@gmail.com
 [credential]
 	helper = osxkeychain
-[init]
-	templatedir = ~/.git-templates
-[push]
-	default = current
+[alias]
+	# Create [new] feature branch
+	new = "!func() { git checkout -b \"$1\" remotes/origin/master; }; func"
+	
+	# Show [curr]ent [branch]
+	currbranch = "rev-parse --abbrev-ref HEAD"
+
+	# [upload] current branch
+	upload = "!git push origin $(git currbranch)"
+
+	unstage = reset HEAD --
+	# [refresh] current branch with latest changes in master
+	refresh = pull --rebase origin master
+	
+	# [c]heck[o]ut [p]ull [r]equest (useful for reviewing large changes in IDE)
+	copr = "!func() { git fetch upstream pull/$1/head && git checkout FETCH_HEAD; }; func"
+ 
+ 	# Show commit [l]og [s]hort
+	ls = log --pretty=format:\"%C(magenta)%h%Cred%d\\\\ %Creset%s%C(green)\\\\ [%cn]\" --decorate
+	# Show commit [l]og [l]ong (with file names)
+	ll = ls --name-status
